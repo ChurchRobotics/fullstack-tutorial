@@ -7,13 +7,13 @@ jobs:
 
     steps:
       - checkout
-      - run: cd final/client && npm ci
-      - run: cd final/client && npm test
-      - run: cd final/client && npx apollo client:check
+      - run: cd client && npm ci
+      - run: cd client && npm test
+      - run: cd client && npx apollo client:check
 
       - run: |
           if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            cd final/client && npx apollo client:push
+            cd client && npx apollo client:push
           fi
 
   Apollo Server:
@@ -22,20 +22,20 @@ jobs:
 
     steps:
       - checkout
-      - run: cd final/server && npm ci
-      - run: cd final/server && npm test
+      - run: cd server && npm ci
+      - run: cd server && npm test
 
       - run:
           name: Starting server
-          command: cd final/server && npm run start:ci
+          command: cd server && npm run start:ci
           background: true
 
       - run: sleep 5
-      - run: cd final/server && npx apollo service:check
+      - run: cd server && npx apollo service:check
 
       - run: |
           if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            cd final/server && npx apollo service:push
+            cd server && npx apollo service:push
           fi
 
 workflows:
