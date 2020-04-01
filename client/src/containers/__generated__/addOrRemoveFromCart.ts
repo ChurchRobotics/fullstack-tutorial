@@ -4,9 +4,13 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetCartItems
+// GraphQL mutation operation: addOrRemoveFromCart
 // ====================================================
 
-export interface GetCartItems {
-  cartItems: string[];
+export interface addOrRemoveFromCart {
+  addOrRemoveFromCart: string[];
+}
+
+export interface addOrRemoveFromCartVariables {
+  launchId: string;
 }

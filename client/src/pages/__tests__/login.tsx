@@ -45,9 +45,9 @@ describe('Login Page', () => {
     await waitForElement(() => getByText(/log in/i));
 
     // check to make sure the cache's contents have been updated
-    const { isLoggedIn } = cache.readQuery({
+    const { isLoggedIn } = cache.readQuery<any>({
       query: gql`
-        {
+        query IsLoggedIn {
           isLoggedIn @client
         }
       `,
