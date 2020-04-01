@@ -1,5 +1,3 @@
-const UserAPI = require('../user');
-
 const mockStore = {
   users: {
     findOrCreate: jest.fn(),
