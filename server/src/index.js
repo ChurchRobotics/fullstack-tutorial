@@ -5,22 +5,17 @@ const isEmail = require('isemail');
 
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
-const { createStore } = require('./utils');
-
-const LaunchAPI = require('./datasources/launch');
-const UserAPI = require('./datasources/user');
 
 const Koa = require('koa');
 const app = new Koa();
 
-// creates a sequelize connection once. NOT for every request
-const store = createStore();
-
-// set up any dataSources our resolvers need
-const dataSources = () => ({
-  launchAPI: new LaunchAPI(),
-  userAPI: new UserAPI({ store }),
-});
+const {
+  LaunchAPI,
+  UserAPI,
+  VideoMessageAPI,
+  store,
+  dataSources,
+} = require('./datasources');
 
 // set up the global context for each resolver, using the req
 const context = async ({ ctx }) => {
@@ -65,6 +60,7 @@ module.exports = {
   ApolloServer,
   LaunchAPI,
   UserAPI,
+  VideoMessageAPI,
   store,
   server,
 };
