@@ -1,6 +1,6 @@
 const LaunchAPI = require('./launch-api');
 const UserAPI = require('./user-api');
-const VideoMessageAPI = require('./video_message');
+const VideoMessageAPI = require('./video_message-api');
 
 // creates a sequelize connection once. NOT for every request
 const store = require('./store')();
