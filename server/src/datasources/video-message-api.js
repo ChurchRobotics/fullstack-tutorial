@@ -19,7 +19,7 @@ class VideoMessageAPI extends RESTDataSource {
   }
 
   sendVideoMessage({ messageId }) {
-    return this.post('video-message/outbox/', messageId);
+    return this.post('video-message/send/', messageId);
   }
 }
 
