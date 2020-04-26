@@ -1,7 +1,7 @@
 const gql = require('graphql-tag');
 
 module.exports = gql`
-  type Query {
+  extend type Query {
     launches(
       """
       The number of results to show. Must be >= 1. Default = 20

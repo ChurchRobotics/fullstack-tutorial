@@ -5,7 +5,7 @@ module.exports = gql`
     me: User
   }
 
-  type Mutation {
+  extend type Mutation {
     # if false, signup failed -- check errors
     bookTrips(launchIds: [ID]!): TripUpdateResponse!
 
