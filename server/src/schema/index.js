@@ -2,7 +2,7 @@ const gql = require('graphql-tag');
 
 const launch = require('./launch');
 const user = require('./user');
-const video_message = require('./video_message');
+const videoMessage = require('./video-message');
 
 const _ = gql`
   scalar Date
@@ -22,5 +22,5 @@ module.exports = [
   _,
   launch,
   user,
-  video_message,
+  videoMessage,
 ];
