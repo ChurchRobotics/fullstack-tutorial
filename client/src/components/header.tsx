@@ -23,7 +23,7 @@ interface HeaderProps {
   children?: any;
 }
 
-const Header: React.FC<HeaderProps> = ({ image, children = 'Space Explorer' }) => {
+const Header: React.FC<HeaderProps> = ({ image, children = 'Kameo App' }) => {
   const email = atob(localStorage.getItem('token') as string);
   const avatar = image || pickAvatarByEmail(email);
 
