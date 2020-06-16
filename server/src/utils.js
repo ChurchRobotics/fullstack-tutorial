@@ -17,11 +17,11 @@ exports.paginateResults = ({
   });
 
   return cursorIndex >= 0
-    ? cursorIndex === results.length - 1 // don't let us overflow
+    ? (cursorIndex === results.length - 1 // don't let us overflow
       ? []
       : results.slice(
-          cursorIndex + 1,
-          Math.min(results.length, cursorIndex + 1 + pageSize),
-        )
+        cursorIndex + 1,
+        Math.min(results.length, cursorIndex + 1 + pageSize),
+      ))
     : results.slice(0, pageSize);
 };

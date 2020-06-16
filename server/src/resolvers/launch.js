@@ -24,8 +24,9 @@ module.exports = {
           : false,
       };
     },
-    launch: (_, { id }, { dataSources }) =>
-      dataSources.launchAPI.getLaunchById({ launchId: id }),
+    launch: (_, { id }, { dataSources }) => (
+      dataSources.launchAPI.getLaunchById({ launchId: id })
+    ),
   },
   Mission: {
     // make sure the default size is 'large' in case user doesn't specify

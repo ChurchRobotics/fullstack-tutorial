@@ -5,6 +5,19 @@ module.exports = gql`
     me: User
   }
 
+  type User {
+    id: ID!
+    email: String!
+    profileImage: String
+    # 
+    receivedBookings: [Booking!]!
+    trips: [Launch]!
+  }
+
+  extend type Launch {
+    isBooked: Boolean!
+  }
+
   extend type Mutation {
     # if false, signup failed -- check errors
     bookTrips(launchIds: [ID]!): TripUpdateResponse!
@@ -22,16 +35,5 @@ module.exports = gql`
     success: Boolean!
     message: String
     launches: [Launch]
-  }
-
-  extend type Launch {
-    isBooked: Boolean!
-  }
-
-  type User {
-    id: ID!
-    email: String!
-    profileImage: String
-    trips: [Launch]!
   }
 `;

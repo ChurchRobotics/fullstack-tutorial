@@ -10,6 +10,7 @@ const {
   LaunchAPI,
   UserAPI,
   VideoMessageAPI,
+  BookingAPI,
 } = require('./datasources');
 
 const Koa = require('koa');
@@ -23,6 +24,7 @@ const dataSources = () => ({
   launchAPI: new LaunchAPI(),
   userAPI: new UserAPI({ store }),
   videoMessageAPI: new VideoMessageAPI(),
+  bookingAPI: new BookingAPI(),
 });
 
 // set up the global context for each resolver, using the req
@@ -69,6 +71,7 @@ module.exports = {
   LaunchAPI,
   UserAPI,
   VideoMessageAPI,
+  BookingAPI,
   store,
   server,
 };
