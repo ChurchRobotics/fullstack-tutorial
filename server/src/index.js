@@ -6,16 +6,24 @@ const isEmail = require('isemail');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 
-const Koa = require('koa');
-const app = new Koa();
-
 const {
   LaunchAPI,
   UserAPI,
   VideoMessageAPI,
-  store,
-  dataSources,
 } = require('./datasources');
+
+const Koa = require('koa');
+const app = new Koa();
+
+// creates a sequelize connection once. NOT for every request
+const store = require('./store')();
+
+// set up any dataSources our resolvers need
+const dataSources = () => ({
+  launchAPI: new LaunchAPI(),
+  userAPI: new UserAPI({ store }),
+  videoMessageAPI: new VideoMessageAPI(),
+});
 
 // set up the global context for each resolver, using the req
 const context = async ({ ctx }) => {

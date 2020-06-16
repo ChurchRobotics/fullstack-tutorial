@@ -9,7 +9,7 @@ module.exports = () => {
 
   const db = new SQL('database', 'username', 'password', {
     dialect: 'sqlite',
-    storage: path.resolve(__dirname, '../../store.sqlite'),
+    storage: path.resolve(__dirname, '../store.sqlite'),
     operatorsAliases,
     logging: false,
   });

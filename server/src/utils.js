@@ -1,4 +1,4 @@
-module.exports.paginateResults = ({
+exports.paginateResults = ({
   after: cursor,
   pageSize = 20,
   results,
