@@ -1,10 +1,10 @@
-exports.paginateResults = ({
+function paginateResults({
   after: cursor,
   pageSize = 20,
   results,
   // can pass in a function to calculate an item's cursor
   getCursor = () => null,
-}) => {
+}) {
   if (pageSize < 1) return [];
 
   if (!cursor) return results.slice(0, pageSize);
@@ -24,4 +24,8 @@ exports.paginateResults = ({
         Math.min(results.length, cursorIndex + 1 + pageSize),
       ))
     : results.slice(0, pageSize);
+};
+
+module.exports = {
+  paginateResults,
 };

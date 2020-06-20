@@ -1,6 +1,6 @@
 const gql = require('graphql-tag');
 
-module.exports = gql`
+const typeDefs = gql`
   extend type Query {
     videoMessage(id: ID!): VideoMessageType
   }
@@ -33,3 +33,24 @@ module.exports = gql`
     presignVideo: String!
   }
 `;
+
+const resolvers = {
+  Query: {
+    videoMessage: (_, { id }, { dataSources }) => (
+      dataSources.videoMessageAPI.getVideoMessage({ messageId: id })
+    ),
+  },
+  Mutation: {
+    draftVideoMessage: (_, { draft }, { dataSources }) => (
+      dataSources.videoMessageAPI.draftVideoMessage({ draft })
+    ),
+    sendVideoMessage: (_, { id }, { dataSources }) => (
+      dataSources.videoMessageAPI.sendVideoMessage({ messageId: id })
+    ),
+  }
+};
+
+module.exports = {
+  typeDefs,
+  resolvers,
+};

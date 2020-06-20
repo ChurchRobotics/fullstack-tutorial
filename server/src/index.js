@@ -3,8 +3,10 @@ require('dotenv').config();
 const { ApolloServer } = require('apollo-server-koa');
 const isEmail = require('isemail');
 
-const typeDefs = require('./schema');
-const resolvers = require('./resolvers');
+const {
+  typeDefs,
+  resolvers,
+} = require('./modules');
 
 const {
   LaunchAPI,

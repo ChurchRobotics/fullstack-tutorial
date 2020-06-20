@@ -4,6 +4,7 @@ const launch = require('./launch');
 const user = require('./user');
 const videoMessage = require('./video_message');
 const booking = require('./booking');
+const wallet = require('./wallet');
 
 const _ = gql`
   scalar Date
@@ -19,10 +20,24 @@ const _ = gql`
   }
 `;
 
-module.exports = [
+const typeDefs = [
   _,
-  launch,
-  user,
-  videoMessage,
-  booking,
+  launch.typeDefs,
+  user.typeDefs,
+  videoMessage.typeDefs,
+  booking.typeDefs,
+  wallet.typeDefs,
 ];
+
+const resolvers = [
+  launch.resolvers,
+  user.resolvers,
+  videoMessage.resolvers,
+  booking.resolvers,
+  wallet.resolvers,
+];
+
+module.exports = {
+  typeDefs,
+  resolvers,
+};
