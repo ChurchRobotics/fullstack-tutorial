@@ -4,16 +4,16 @@ const { ApolloServer } = require('apollo-server-koa');
 const isEmail = require('isemail');
 
 const {
-  typeDefs,
-  resolvers,
-} = require('./modules');
-
-const {
   LaunchAPI,
   UserAPI,
   VideoMessageAPI,
   BookingAPI,
 } = require('./datasources');
+
+const {
+  typeDefs,
+  resolvers,
+} = require('./graph');
 
 const Koa = require('koa');
 const app = new Koa();
