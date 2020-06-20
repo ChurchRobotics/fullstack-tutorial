@@ -1,10 +1,12 @@
 const gql = require('graphql-tag');
 
-const launch = require('./launch');
-const user = require('./user');
-const videoMessage = require('./video_message');
-const booking = require('./booking');
-const wallet = require('./wallet');
+const modules = [
+  require('./launch'),
+  require('./user'),
+  require('./video_message'),
+  require('./booking'),
+  require('./wallet'),
+];
 
 const _ = gql`
   scalar Date
@@ -22,20 +24,12 @@ const _ = gql`
 
 const typeDefs = [
   _,
-  launch.typeDefs,
-  user.typeDefs,
-  videoMessage.typeDefs,
-  booking.typeDefs,
-  wallet.typeDefs,
+  ...modules.map(mod => mod.typeDefs)
 ];
 
-const resolvers = [
-  launch.resolvers,
-  user.resolvers,
-  videoMessage.resolvers,
-  booking.resolvers,
-  wallet.resolvers,
-];
+const resolvers = (
+  modules.map(mod => mod.resolvers)
+);
 
 module.exports = {
   typeDefs,
