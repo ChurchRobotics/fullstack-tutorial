@@ -2,7 +2,7 @@ const gql = require('graphql-tag');
 
 const typeDefs = gql`
   extend type User {
-    receivedBookings: [Booking!]!
+    receivedBookings(filter: BookingStatus): [Booking!]!
   }
 
   type Booking {
@@ -14,18 +14,32 @@ const typeDefs = gql`
     by: User!
     due: Date!
     price: Float!
+    status: BookingStatus!
+    date: Date!
+  }
+
+  enum BookingStatus {
+    DRAFT
+    BOOKED
+    WAITING_REVIEW
+    DONE
+    CANCELED
   }
 `;
 
 const resolvers = {
   User: {
-    receivedBookings: async (user, __, { dataSources }) => {
+    receivedBookings: async (user, { filter }, { dataSources }) => {
       // FIXME: don't use mock uid
       const uid = '1' || user.id;
+
+      // TODO: remove delay op
+      await new Promise(done => setTimeout(done, 1000));
 
       return (
         dataSources.bookingAPI.findBookingsByTalent({
           talent: uid,
+          filter,
         }) || []
       );
     },

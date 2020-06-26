@@ -28,6 +28,8 @@ const BOOKINGS = [
     by: '33',
     due: 4,
     price: 10,
+    status: 'BOOKED',
+    date: 1,
   },
   {
     id: '2',
@@ -38,6 +40,8 @@ const BOOKINGS = [
     by: '1',
     due: 3,
     price: 50,
+    status: 'BOOKED',
+    date: 1,
   },
   {
     id: '3',
@@ -48,6 +52,8 @@ const BOOKINGS = [
     by: '33',
     due: 4,
     price: 200,
+    status: 'BOOKED',
+    date: 1,
   },
   {
     id: '4',
@@ -58,6 +64,8 @@ const BOOKINGS = [
     by: '1',
     due: 1,
     price: 1000,
+    status: 'BOOKED',
+    date: 1,
   },
   {
     id: '5',
@@ -68,6 +76,8 @@ const BOOKINGS = [
     by: '3',
     due: 10,
     price: 40,
+    status: 'BOOKED',
+    date: 1,
   },
 ];
 
@@ -76,9 +86,13 @@ class BookingAPI extends DataSource {
     super();
   }
 
-  /** @param {{ talent: string }} */
-  async findBookingsByTalent({ talent }) {
-    return BOOKINGS.filter(it => it.talent === talent);
+  /** @param {{ talent: string, filter: string }} */
+  async findBookingsByTalent({ talent, filter }) {
+    if (filter) {
+      return BOOKINGS.filter(it => it.talent === talent && it.status === filter);
+    } else {
+      return BOOKINGS.filter(it => it.talent === talent);
+    }
   }
 
   /** @param {{ uid: string }} */
