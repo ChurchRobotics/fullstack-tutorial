@@ -13,7 +13,7 @@ const {
 const {
   typeDefs,
   resolvers,
-} = require('./graph');
+} = require('./graphql');
 
 const Koa = require('koa');
 const app = new Koa();
