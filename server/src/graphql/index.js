@@ -6,6 +6,7 @@ const modules = [
   require('./video_message'),
   require('./booking'),
   require('./wallet'),
+  require('./notice'),
 ];
 
 const _ = gql`

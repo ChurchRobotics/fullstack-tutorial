@@ -8,6 +8,7 @@ const {
   UserAPI,
   VideoMessageAPI,
   BookingAPI,
+  NoticeAPI
 } = require('./datasources');
 
 const {
@@ -27,6 +28,7 @@ const dataSources = () => ({
   userAPI: new UserAPI({ store }),
   videoMessageAPI: new VideoMessageAPI(),
   bookingAPI: new BookingAPI(),
+  noticeAPI: new NoticeAPI(),
 });
 
 // set up the global context for each resolver, using the req

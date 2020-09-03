@@ -11,7 +11,7 @@ const typeDefs = gql`
     profileImage: String
   }
 
-  extend type Mutation {
+    extend type Mutation {
     login(email: String): String # login token
 
     # for use with the iOS tutorial
