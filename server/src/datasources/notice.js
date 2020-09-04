@@ -13,29 +13,23 @@ class NoticeAPI extends DataSource {
   }
 
   async sendNotices({ userIds }) {
-    return this.initiatePushService(['android'], [JPushAsync.alias(...userIds)],
+    this.initiatePushService(['android'], [JPushAsync.alias(...userIds)],
       [JPushAsync.android('给android推送消息', '测试推送', 5, null, null,
         null, 3, 2, 2)]);
+    return { success: true, message: '推送成功' }
   }
 
-  async initiatePushService(platform, audience, notification) {
-    let generalResponse = {};
-    await client.push()
+  initiatePushService(platform, audience, notification) {
+    client.push()
       .setPlatform(...platform)
       .setAudience(...audience)
       .setNotification(...notification)
       .setOptions(null, 60)
       .send()
-      .then(() => {
-        generalResponse = { success: true, message: '成功推送!' }
-      }).catch(() => {
-        generalResponse = { success: false, message: '推送失败!' }
-      })
-    return generalResponse;
   }
 
   deletePlatformAlias(alias, platform) {
-    client.deleteAlias(alias, platform);  //无论成功与否都是返回undefined,这里该这么断言是否删除成功
+    client.deleteAlias(alias, platform);
   }
 }
 
