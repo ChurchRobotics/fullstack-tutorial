@@ -1,10 +1,11 @@
-function paginateResults({
-  after: cursor,
-  pageSize = 20,
-  results,
-  // can pass in a function to calculate an item's cursor
-  getCursor = () => null,
-}) {
+const sillyDatetime = require('silly-datetime');
+
+function paginateResults
+({
+   after: cursor, pageSize = 20, results,
+   // can pass in a function to calculate an item's cursor
+   getCursor = () => null,
+ }) {
   if (pageSize < 1) return [];
 
   if (!cursor) return results.slice(0, pageSize);
@@ -24,8 +25,23 @@ function paginateResults({
         Math.min(results.length, cursorIndex + 1 + pageSize),
       ))
     : results.slice(0, pageSize);
-};
+}
+
+function generateVerificationCode() {
+  let verificationCode = "";
+  for (let i = 0; i < 4; i++) {
+    verificationCode += Math.floor(Math.random() * 10)
+  }
+  return verificationCode;
+}
+
+function getDateTime(currentDate) {
+  currentDate.setMinutes(currentDate.getMinutes() + 10);
+  return currentDate;
+}
 
 module.exports = {
   paginateResults,
+  generateVerificationCode,
+  getDateTime
 };

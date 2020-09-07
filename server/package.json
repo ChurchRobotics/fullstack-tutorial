@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@alicloud/sms-sdk": "^1.1.6",
     "apollo-datasource": "^0.7.0",
     "apollo-datasource-rest": "^0.7.0",
     "apollo-server-koa": "^2.10.0",
@@ -23,6 +24,7 @@
     "koa": "^2.11.0",
     "nodemon": "^1.18.4",
     "sequelize": "^4.39.0",
+    "silly-datetime": "^0.1.2",
     "sqlite3": "^4.0.3"
   },
   "devDependencies": {
